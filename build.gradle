@@ -1,3 +1,9 @@
+buildscript {
+	dependencies {
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -34,6 +40,20 @@ dependencies {
 //	testImplementation 'org.springframework.security:spring-security-test'
 	// 타임리프 레이아웃 다이얼렉트 라이브러리 추가
 	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.2.0'
+}
+
+apply plugin: 'docker'
+
+task buildDocker(type: Docker, dependsOn: build) {
+	// push = true
+	applicationName = jar.baseName
+	dockerfile = file('Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
 }
 
 test {
