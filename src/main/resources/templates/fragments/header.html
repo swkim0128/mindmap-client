@@ -35,8 +35,6 @@
                 <a class="dropdown-item" href="#">
                   <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
               </div>
             </li>
             <li class="nav-item nav-logout d-none d-lg-block dropdown">
@@ -44,11 +42,9 @@
                 <i class="mdi mdi-power"></i>
               </a>
                <div class="dropdown-menu navbar-dropdown" aria-labelledby="user">
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-cached mr-2 text-success"></i> 로그인 </a>
+                <a class="dropdown-item" href="javscript:void(0)">
+                  <i class="mdi mdi-logout mr-2 text-primary"></i> 로그아웃 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-logout mr-2 text-primary"></i> 회원가입 </a>
               </div>              
             </li>
             <li class="nav-item d-none d-lg-block full-screen-link">
@@ -62,6 +58,12 @@
             <span class="mdi mdi-menu"></span>
           </button>
         </div>
-      </nav>		
+      </nav>	
+   	<!-- 로그아웃 -->
+	<form action="LoginForm.html" th:action="@{/auth/logout}" method="post">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	<button>로그아웃</button>
+	</form>
+
 </body>
 </html>
